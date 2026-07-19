@@ -141,6 +141,7 @@ export default function AIChatBot({
           onChange={(e) => onChangePersona(e.target.value as Persona)}
           className="bg-slate-900 border border-slate-800 focus:border-blue-500 text-xs font-bold text-slate-200 px-2.5 py-1.5 rounded-lg outline-none cursor-pointer"
           id="chat-persona-selector"
+          aria-label="Select AI assistant role persona context"
         >
           <option value="fan">Fan Assistance</option>
           <option value="organizer">Venue Organizer</option>
@@ -149,7 +150,12 @@ export default function AIChatBot({
       </div>
 
       {/* Messages Scroll Container */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-950/20">
+      <div 
+        className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-950/20"
+        role="log"
+        aria-live="polite"
+        aria-label="FIFA Chat Transcript Log"
+      >
         {chatError && (
           <div className="p-3.5 bg-red-950/60 border border-red-800/40 rounded-xl text-xs text-red-200">
             <p className="font-semibold">Chat Assistance Warning:</p>
@@ -240,12 +246,14 @@ export default function AIChatBot({
             disabled={isLoading}
             className="flex-1 bg-slate-900 border border-slate-800 focus:border-blue-500 rounded-xl px-4 py-2.5 text-xs text-slate-200 outline-none"
             id="chat-input-text"
+            aria-label={`Ask our ${activePersona} model anything`}
           />
           <button
             type="submit"
             disabled={!inputText.trim() || isLoading}
             id="chat-btn-submit"
             className="bg-blue-600 hover:bg-blue-500 disabled:bg-blue-950 text-white p-2.5 rounded-xl flex items-center justify-center transition-all shadow-md shadow-blue-500/15"
+            aria-label="Send message to AI assistant"
           >
             <Send className="w-4 h-4" />
           </button>

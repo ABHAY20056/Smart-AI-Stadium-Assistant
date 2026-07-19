@@ -66,8 +66,16 @@ export default function OperationalMetrics({
               <div
                 key={line.id}
                 onClick={() => onTransitClick?.(line)}
-                className="bg-slate-950/50 hover:bg-slate-950 border border-slate-800/80 rounded-xl p-4 transition-all cursor-pointer flex justify-between items-center group"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    onTransitClick?.(line);
+                  }
+                }}
+                className="bg-slate-950/50 hover:bg-slate-950 border border-slate-800/80 rounded-xl p-4 transition-all cursor-pointer flex justify-between items-center group focus:border-blue-500 outline-none"
                 id={`transit-card-${line.id}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Transit line ${line.lineName}, current wait time ${line.waitTime} minutes, passenger load level is ${line.passengerLoad}. Click to generate AI dispersion advisory.`}
               >
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 bg-slate-900 border border-slate-800 rounded-lg group-hover:border-slate-700 transition-colors">

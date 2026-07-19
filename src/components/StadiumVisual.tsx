@@ -115,10 +115,19 @@ export default function StadiumVisual({
               {/* North Stand */}
               <path
                 d="M 120,40 A 165,165 0 0,1 280,40 L 260,110 A 100,100 0 0,0 140,110 Z"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'stands-n')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'stands-n')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`North Stands, density level: ${zones.find(z => z.id === 'stands-n')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'stands-n');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'stands-n');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="80" textAnchor="middle" fill="#f8fafc" className="text-[10px] font-bold pointer-events-none uppercase tracking-wider">North Stands</text>
@@ -126,10 +135,19 @@ export default function StadiumVisual({
               {/* South Stand */}
               <path
                 d="M 120,360 A 165,165 0 0,0 280,360 L 260,290 A 100,100 0 0,1 140,290 Z"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'stands-s')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'stands-s')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`South Stands, density level: ${zones.find(z => z.id === 'stands-s')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'stands-s');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'stands-s');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="330" textAnchor="middle" fill="#f8fafc" className="text-[10px] font-bold pointer-events-none uppercase tracking-wider">South Stands</text>
@@ -137,10 +155,19 @@ export default function StadiumVisual({
               {/* West Premium Seating */}
               <path
                 d="M 40,120 A 165,165 0 0,1 40,280 L 110,260 A 100,100 0 0,0 110,140 Z"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'stands-w')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'stands-w')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`West Premium Seating, density level: ${zones.find(z => z.id === 'stands-w')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'stands-w');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'stands-w');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="75" y="205" textAnchor="middle" fill="#f8fafc" className="text-[10px] font-bold pointer-events-none uppercase tracking-wider -rotate-90 origin-center translate-y-[-10px] translate-x-[110px]">West Stands</text>
@@ -148,10 +175,19 @@ export default function StadiumVisual({
               {/* East Seating */}
               <path
                 d="M 360,120 A 165,165 0 0,0 360,280 L 290,260 A 100,100 0 0,1 290,140 Z"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'stands-e')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'stands-e')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`East General Stands, density level: ${zones.find(z => z.id === 'stands-e')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'stands-e');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'stands-e');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="325" y="205" textAnchor="middle" fill="#f8fafc" className="text-[10px] font-bold pointer-events-none uppercase tracking-wider rotate-90 origin-center translate-y-[20px] translate-x-[-120px]">East Stands</text>
@@ -162,10 +198,19 @@ export default function StadiumVisual({
                 cx="200"
                 cy="25"
                 r="12"
-                className={`transition-all duration-300 cursor-pointer ${getDensityColor(zones.find(z => z.id === 'gate-a')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 cursor-pointer outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'gate-a')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Gate A (North Entrance), density level: ${zones.find(z => z.id === 'gate-a')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'gate-a');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'gate-a');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="28" textAnchor="middle" fill="#0f172a" className="text-[9px] font-extrabold pointer-events-none">A</text>
@@ -175,10 +220,19 @@ export default function StadiumVisual({
                 cx="375"
                 cy="200"
                 r="12"
-                className={`transition-all duration-300 cursor-pointer ${getDensityColor(zones.find(z => z.id === 'gate-b')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 cursor-pointer outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'gate-b')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Gate B (East Entrance), density level: ${zones.find(z => z.id === 'gate-b')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'gate-b');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'gate-b');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="375" y="203" textAnchor="middle" fill="#0f172a" className="text-[9px] font-extrabold pointer-events-none">B</text>
@@ -188,10 +242,19 @@ export default function StadiumVisual({
                 cx="200"
                 cy="375"
                 r="12"
-                className={`transition-all duration-300 cursor-pointer ${getDensityColor(zones.find(z => z.id === 'gate-c')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 cursor-pointer outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'gate-c')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Gate C (South Entrance), density level: ${zones.find(z => z.id === 'gate-c')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'gate-c');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'gate-c');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="378" textAnchor="middle" fill="#0f172a" className="text-[9px] font-extrabold pointer-events-none">C</text>
@@ -201,10 +264,19 @@ export default function StadiumVisual({
                 cx="25"
                 cy="200"
                 r="12"
-                className={`transition-all duration-300 cursor-pointer ${getDensityColor(zones.find(z => z.id === 'gate-d')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 cursor-pointer outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'gate-d')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Gate D (West Entrance), density level: ${zones.find(z => z.id === 'gate-d')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'gate-d');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'gate-d');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="25" y="203" textAnchor="middle" fill="#0f172a" className="text-[9px] font-extrabold pointer-events-none">D</text>
@@ -218,10 +290,19 @@ export default function StadiumVisual({
                 width="80"
                 height="18"
                 rx="3"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'concourse-n')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'concourse-n')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`North Concourse & Food Court, density level: ${zones.find(z => z.id === 'concourse-n')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'concourse-n');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'concourse-n');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="117" textAnchor="middle" fill="#0f172a" className="text-[8px] font-bold pointer-events-none">N Concourse</text>
@@ -232,10 +313,19 @@ export default function StadiumVisual({
                 width="80"
                 height="18"
                 rx="3"
-                className={`transition-all duration-300 ${getDensityColor(zones.find(z => z.id === 'concourse-s')?.densityLevel || 'low')}`}
+                className={`transition-all duration-300 outline-none focus:stroke-blue-400 focus:stroke-2 ${getDensityColor(zones.find(z => z.id === 'concourse-s')?.densityLevel || 'low')}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`South Concourse Plaza, density level: ${zones.find(z => z.id === 'concourse-s')?.densityLevel || 'unknown'}`}
                 onClick={() => {
                   const z = zones.find(x => x.id === 'concourse-s');
                   if (z) onZoneClick(z);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    const z = zones.find(x => x.id === 'concourse-s');
+                    if (z) onZoneClick(z);
+                  }
                 }}
               />
               <text x="200" y="289" textAnchor="middle" fill="#0f172a" className="text-[8px] font-bold pointer-events-none">S Concourse</text>

@@ -218,7 +218,15 @@ export default function IncidentManager({
                 <div
                   key={inc.id}
                   onClick={() => setSelectedIncident(inc)}
-                  className={`border rounded-xl p-3.5 cursor-pointer transition-all ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setSelectedIncident(inc);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Incident card: ${inc.title}. Severity: ${inc.severity}. Location: ${inc.location}. Status: ${inc.status}. Click to view detailed safety protocols and auto-translated announcements.`}
+                  className={`border rounded-xl p-3.5 cursor-pointer transition-all focus:border-blue-500 outline-none ${
                     selectedIncident?.id === inc.id
                       ? 'bg-slate-950 border-blue-500 shadow-md'
                       : 'bg-slate-950/40 border-slate-800/80 hover:bg-slate-950/80'

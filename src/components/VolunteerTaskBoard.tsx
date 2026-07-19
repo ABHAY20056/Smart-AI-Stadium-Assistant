@@ -209,7 +209,15 @@ export default function VolunteerTaskBoard({
                 <div
                   key={task.id}
                   onClick={() => setSelectedTask(task)}
-                  className={`border rounded-xl p-3.5 cursor-pointer transition-all ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setSelectedTask(task);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Volunteer deployment task: ${task.taskName}, duration is ${task.duration}, status is ${task.status}. Click to view detailed sector allocations and briefing instructions.`}
+                  className={`border rounded-xl p-3.5 cursor-pointer transition-all focus:border-indigo-500 outline-none ${
                     selectedTask?.id === task.id
                       ? 'bg-slate-950 border-indigo-500 shadow-md'
                       : 'bg-slate-950/40 border-slate-800/80 hover:bg-slate-950/80'

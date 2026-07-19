@@ -50,9 +50,16 @@ We implemented a robust, full-stack React + Express + Vite architecture that uti
 ---
 
 ## ♿ Accessibility and Inclusive Design
+- **Complete ARIA Semantic Markup**: Added full accessibility attributes including `aria-live="polite"` on chat transcripts and loaders, `aria-busy` states on analytical cards, and `role="log"` parameters.
+- **Keyboard-Navigable SVG Stadium Map**: Map sectors (stands, gates, concourse zones) have explicit `tabIndex={0}`, `role="button"` tags, and customized KeyDown handlers (`Enter` / `Space`) allowing complete keyboard-only terminal navigation.
 - **High-Contrast Dark Aesthetic**: Engineered with eye-safe Slate/Navy and Emerald backdrops, perfect for night shifts or sunny days inside outdoor venues.
-- **Inclusive Features**: Built-in translation tools, phonetic phonetic aids, and a dedicated ADA/Accessibility seating toggle.
+- **Inclusive Features**: Built-in translation tools, phonetic aids, and a dedicated ADA/Accessibility seating toggle.
 - **Mobile Responsive Layout**: Scaled with a desktop-first dashboard layout that wraps fluidly down to 44px touch targets on mobile viewports.
+
+---
+
+## 📋 Custom Features Added
+- **AI-Generated Operations Summary**: Created a server-side analyzed `/api/gemini/ops-summary` endpoint that maps live seat loads, active incident threat profiles, and transportation queues into an executive real-time operations dashboard for commanders.
 
 ---
 

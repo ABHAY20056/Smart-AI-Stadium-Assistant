@@ -13,6 +13,7 @@ import OperationalMetrics from './components/OperationalMetrics';
 import IncidentManager from './components/IncidentManager';
 import VolunteerTaskBoard from './components/VolunteerTaskBoard';
 import AIChatBot from './components/AIChatBot';
+import OpsSummaryPanel from './components/OpsSummaryPanel';
 
 import {
   Shield,
@@ -183,13 +184,13 @@ export default function App() {
             <span className="text-emerald-400 font-extrabold text-base tracking-wider">FIFA</span>
           </div>
           <div>
-            <h1 className="text-base font-extrabold text-slate-100 tracking-tight flex items-center gap-2">
-              Stadium Operations & Fan Experience Command Hub
+            <h1 className="text-base md:text-lg font-extrabold text-slate-100 tracking-tight flex flex-wrap items-center gap-2">
+              Smart-AI Stadium Assistant
               <span className="text-[10px] bg-emerald-600/15 border border-emerald-500/20 text-emerald-400 px-2.5 py-0.5 rounded-full font-bold">
                 World Cup 2026
               </span>
             </h1>
-            <p className="text-xs text-slate-400 mt-0.5">GenAI-enabled intelligence directing safety, transit, and volunteer distribution.</p>
+            <p className="text-xs text-slate-400 mt-0.5">Your AI-powered companion for FIFA World Cup 2026.</p>
           </div>
         </div>
 
@@ -332,6 +333,13 @@ export default function App() {
 
           {activePersona === 'organizer' && (
             <div className="space-y-6" id="organizer-command-module">
+              {/* Real-time AI Operations Summary report */}
+              <OpsSummaryPanel
+                zones={zones}
+                incidents={incidents}
+                transit={transit}
+              />
+
               {/* Seating map on command dashboard */}
               <StadiumVisual
                 zones={zones}
@@ -403,8 +411,8 @@ export default function App() {
 
       {/* FOOTER */}
       <footer className="mt-12 bg-slate-900 border-t border-slate-800 px-6 py-4 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-2">
-        <p>© FIFA World Cup 2026 - Stadium Operations Platform. All rights reserved.</p>
-        <p>Powered by Google Gemini 3.5 Flash Model Intelligence.</p>
+        <p>© Smart-AI Stadium Assistant All rights reserved.</p>
+        <p>Powered by Smart Stadium</p>
       </footer>
 
       {/* TRANSPORT ADVICE LIGHTBOX MODAL */}

@@ -240,6 +240,70 @@ app.post('/api/gemini/translate-assist', async (req, res) => {
   }
 });
 
+// 6. Real-Time AI Operations Summary Assessor
+app.post('/api/gemini/ops-summary', async (req, res) => {
+  try {
+    const { zones, incidents, transit } = req.body;
+    const ai = getGeminiClient();
+
+    const formattedZones = (zones || [])
+      .map((z: any) => `${z.name} (${z.type}): ${z.currentOccupancy}/${z.capacity} pax (${z.densityLevel} density)`)
+      .join('\n');
+
+    const formattedIncidents = (incidents || [])
+      .filter((i: any) => i.status !== 'resolved')
+      .map((i: any) => `- [${i.severity} Severity] ${i.title} at ${i.location} (Status: ${i.status})`)
+      .join('\n') || 'No active incidents.';
+
+    const formattedTransit = (transit || [])
+      .map((t: any) => `- ${t.lineName} (${t.mode}): Wait time ${t.waitTime} min, Load: ${t.passengerLoad}, Status: ${t.status}`)
+      .join('\n');
+
+    const prompt = `As the Principal Venue Command Director for the FIFA World Cup 2026, analyze the following stadium live telemetry data:
+
+=== STADIUM DENSITIES ===
+${formattedZones}
+
+=== ACTIVE INCIDENTS ===
+${formattedIncidents}
+
+=== TRANSIT LINKS ===
+${formattedTransit}
+
+Evaluate this operational status. Identify immediate safety recommendations, bottlenecks, crowd movement instructions, volunteer shift adjustments, and transit coordination. Output a highly professional, structured JSON report. Ensure the briefings are concise, factual, and strictly aligned with safety procedures.`;
+
+    const response = await ai.models.generateContent({
+      model: 'gemini-3.5-flash',
+      contents: prompt,
+      config: {
+        systemInstruction: 'You are the Chief Stadium Command Intelligence Coordinator for the FIFA World Cup 2026. You excel at real-time crowd dynamics, logistical optimization, and risk mitigation. Provide precise, professional advice and highly relevant alerts.',
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: Type.OBJECT,
+          properties: {
+            summaryText: { type: Type.STRING, description: 'Executive brief of current stadium state (2 sentences max).' },
+            keyAlerts: {
+              type: Type.ARRAY,
+              items: { type: Type.STRING },
+              description: 'List of high-priority alerts representing critical operations or warnings.'
+            },
+            crowdControlAdvice: { type: Type.STRING, description: 'Direct advice on physical flow, gates, concourse bypasses.' },
+            volunteerDispatchAdvice: { type: Type.STRING, description: 'Direct instruction for shifting ushers/stewards to mitigate bottle-necks.' },
+            transitMitigationAdvice: { type: Type.STRING, description: 'Actionable backup dispatch or rerouting for transit hubs.' }
+          },
+          required: ['summaryText', 'keyAlerts', 'crowdControlAdvice', 'volunteerDispatchAdvice', 'transitMitigationAdvice']
+        }
+      }
+    });
+
+    const result = JSON.parse(response.text || '{}');
+    res.json(result);
+  } catch (error: any) {
+    console.error('Operations Summary error:', error);
+    res.status(500).json({ error: error.message || 'Failed to generate operational summary' });
+  }
+});
+
 // ---------------------------------------------------------
 // Vite Integration and Static Asset Serving
 // ---------------------------------------------------------
